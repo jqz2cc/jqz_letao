@@ -10,8 +10,15 @@ a:link,a:visited,a:hover,a:active{
 html,body{
  height: 100%;
 }
+.mb_20{
+  margin-bottom: 20px;
+}
 .bg_body{
   background-color: #222D32;
+}
+.text-center .lh_50{
+  line-height: 50px;
+  vertical-align:center;
 }
 .clearfix::after{
   content: "";
@@ -177,4 +184,29 @@ html,body{
   
 
   // 
+}
+
+
+// second.html的文件样式
+.files{
+  // height: 34px;
+  .second_picBox{
+    width: 82px;
+    height: 34px;
+    position: relative;
+    &:hover .btn{
+      color: #333;
+      background-color: #e6e6e6;
+      border-color: #adadad;
+    }
+    #fileupload{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 34px;
+      width: 82px;
+      opacity: 0;
+     
+    }
+  }
 }

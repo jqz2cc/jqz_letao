@@ -2,7 +2,7 @@
  * @Author: 贾倾真 
  * @Date: 2017-11-21 21:21:04 
  * @Last Modified by: 贾倾真
- * @Last Modified time: 2017-11-21 22:03:03
+ * @Last Modified time: 2017-11-22 17:26:05
  */
 
 
@@ -14,14 +14,14 @@ $(function () {
   });
   // 进度条开始
   $(document).ajaxStart(function () {
-    console.log("开始")
+    // console.log("开始")
     NProgress.start();
   });
   // 进度条结束
 
   $(document).ajaxStop(function () {
     // setTimeout(function () {
-    console.log("结束")
+    // console.log("结束")
     NProgress.done();
     // }, 500);
   })

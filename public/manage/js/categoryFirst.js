@@ -58,6 +58,7 @@ $(function () {
         }
     }).on('success.form.bv', function(e) {
         console.log(0);
+        console.log($form.serialize());
         e.preventDefault();
         /*如果点击需要校验  点击的按钮必须是提交按钮  并且和当前表单关联*/
         /*校验成功后的点击事件  完成数据的提交*/

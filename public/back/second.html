@@ -67,8 +67,47 @@
         <li>
           <i>/</i>
         </li>
+        <li>分类管理</li>
+        <li>
+          <i>/</i>
+        </li>
         <li>二级分类</li>
       </ol>
+
+      <!-- 添加分类的按钮 -->
+      <button class="btn btn-default btn_secondtAdd mb_20">添加分类</button>
+
+      <!-- table的内容区域 -->
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="text-center">
+            <td width="20%" style="font-weight:800">序号</td>
+            <td width="30%" style="font-weight:800">一级分类名称</td>
+            <td width="30%" style="font-weight:800">二级分类名称</td>
+            <td width="30%" style="font-weight:800">二级分类LOGO</td>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- 模板引擎的放置地 -->
+
+          <!-- <tr class="text-center">
+            <td width="20%" class="lh_50">1</td>
+            <td width="30%" class="lh_50">女士馆</td>
+            <td width="30%" class="lh_50">新百伦</td>
+            <td width="30%" class="lh_50">
+              <img src="./images/none.png" width="50" height="50" alt="">
+            </td>
+
+          </tr> -->
+        </tbody>
+      </table>
+
+      <!-- 分页效果的实现 -->
+      <div class="text-center">
+        <ul id="paginator"></ul>
+      </div>
+
     </div>
   </div>
 
@@ -97,6 +136,99 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+
+
+  <!-- 添加分类的模态框 -->
+
+  <div class="modal fade" id="second_Add_modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">温馨提示</h4>
+        </div>
+        <div class="modal-body">
+          <form id="form">
+            <!-- 下拉框 -->
+            <div class="form-group">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <span class="first_text">请选择一级分类</span>
+                  <span class="caret"></span>
+                </button>
+
+                <!-- 需要获取一级分类的id -->
+                <input type="hidden" name="categoryId" class="categoryId">
+
+                <ul class="dropdown-menu">
+
+                  <!-- 下拉列表的数据放置地 -->
+
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- 二级类名输入框 -->
+            <div class="form-group">
+
+              <!-- 需要上传 品牌名称-->
+              <input type="text" name="brandName" autocomplete="off" class="form-control" id="exampleInputEmail1" placeholder="请输入添加的名称">
+            </div>
+            <!-- 图片文件上传 -->
+            <div class="form-group files">
+              <div class="second_picBox">
+                <input type="button" class="btn btn-default" class="form-control" id="exampleInputEmail1" value="上传图片">
+                <!-- 后端通过name属性"pic"获取图片    data-url指定的接口地址-->
+                <input type="file" name="pic1" id="fileupload" data-url="/category/addSecondCategoryPic">
+                <input type="hidden" name="hot" value="0">
+              </div>
+            </div>
+            <!-- 图片显示 -->
+            <div class="form-group">
+              <div class="img_box">
+                <img src="./images/none.png" width="100" height="100" alt="">
+                <!-- 获取logo -->
+                <input type="hidden" name="brandLogo">
+              </div>
+            </div>
+
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="submit" form="form" class="btn btn-primary second_btn">添加</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+
+    <!-- 模板引擎_____表格 -->
+    <script type="text/html" id="second_tpl">
+      {{each rows v i}}
+      <tr class="text-center">
+        <td width="20%" class="lh_50">{{(page-1)*size+i+1}}</td>
+        <td width="30%" class="lh_50">{{v.categoryName}}</td>
+        <td width="30%" class="lh_50">{{v.brandName}}</td>
+        <td width="30%" class="lh_50">
+          <img src="{{v.brandLogo}}" width="50 " height="50 " alt=" ">
+        </td>
+      </tr>
+      {{/each}}
+    </script>
+
+    <!-- 模板引擎____一级分类名称 -->
+    <script type="text/html" id="first_list_tpl">
+      {{each rows v i}}
+      <li>
+        <a href="#" data-id="{{v.id}}">{{v.categoryName}}</a>
+      </li>
+      {{/each}}
+    </script>
 </body>
 
 </html>
@@ -104,5 +236,10 @@
 <script src="./lib/bootstrap/js/bootstrap.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+<script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="./lib/jquery-fileupload/jquery.iframe-transport.js"></script>
+<script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
 <script src="./js/common.js"></script>
-<!-- <script src="./js/index.js"></script> -->
+<script src="./js/second.js "></script>

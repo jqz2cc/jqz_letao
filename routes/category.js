@@ -8,19 +8,26 @@ var express = require('express'),
     Category = require('../models/category.js'),
     Brand = require('../models/brand.js'),
     Page = require('../models/page.js');
+
 function checkRootLogin(req, res, next) {
     if (!req.session.employee) {
-        return res.send({ "error": 400, "message": "未登录！" });
+        return res.send({
+            "error": 400,
+            "message": "未登录！"
+        });
     }
     next();
 }
 router.get("/queryTopCategory", function (req, res) {
     Category.queryTopCategory(function (err, data) {
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
 
-        var obj={
-             total:data.length,
-             rows:data
+        var obj = {
+            total: data.length,
+            rows: data
         }
         res.send(obj);
     })
@@ -28,12 +35,15 @@ router.get("/queryTopCategory", function (req, res) {
 
 router.get("/querySecondCategory", function (req, res) {
     Category.querySecondCategory(req.query.id, function (err, data) {
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
-        var obj={
-            total:data.length,
-            rows:data
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
+        var obj = {
+            total: data.length,
+            rows: data
         }
-        res.send(obj);
+        // res.send(obj);
     })
 });
 
@@ -45,8 +55,13 @@ router.post("/addTopCategory", function (req, res) {
     })
     Category.addTopCategory(category, function (err, data) {
         console.log(err);
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
-        res.send({ "success": true });
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
+        res.send({
+            "success": true
+        });
     })
 });
 router.post("/updateTopCategory", checkRootLogin);
@@ -57,8 +72,13 @@ router.post("/updateTopCategory", function (req, res) {
         isDelete: req.body.isDelete ? req.body.isDelete : ''
     })
     Category.updateTopCategory(category, function (err, data) {
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
-        res.send({ "success": true });
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
+        res.send({
+            "success": true
+        });
     })
 });
 router.get("/queryTopCategoryPaging", checkRootLogin);
@@ -68,10 +88,16 @@ router.get("/queryTopCategoryPaging", function (req, res) {
         size: req.query.pageSize ? parseInt(req.query.pageSize) : 10,
     })
     Category.queryTopCategoryPaging(page, function (err, data) {
-        console.log(err);
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
+        // console.log(err);
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
         Category.countTopCategory(function (err, result) {
-            if (err) return res.send({ "error": 403, "message": "数据库异常！" });
+            if (err) return res.send({
+                "error": 403,
+                "message": "数据库异常！"
+            });
             page.total = result.count;
             page.rows = data;
             res.send(page);
@@ -95,9 +121,14 @@ router.post("/addSecondCategoryPic", function (req, res) {
         var file = files.pic1;
         let picName = uuid.v1() + path.extname(file.name);
         fs.rename(file.path, 'public\\upload\\brand\\' + picName, function (err) {
-            if (err) return res.send({ "error": 403, "message": "图片保存异常！" });
+            if (err) return res.send({
+                "error": 403,
+                "message": "图片保存异常！"
+            });
 
-            res.send({ "picAddr": '/upload/brand/' + picName });
+            res.send({
+                "picAddr": '/upload/brand/' + picName
+            });
 
 
         });
@@ -114,8 +145,16 @@ router.post("/addSecondCategory", function (req, res) {
         brandLogo: req.body.brandLogo ? req.body.brandLogo : ''
     })
     Brand.addSecondCategory(brand, function (err, data) {
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
-        res.send({ "success": true });
+
+
+        // console.log(err);
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
+        res.send({
+            "success": true
+        });
 
     });
 });
@@ -130,8 +169,13 @@ router.post("/updateSecondCategory", function (req, res) {
         brandLogo: req.body.brandLogo ? req.body.brandLogo : ''
     })
     Brand.updateSecondCategory(brand, function () {
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
-        res.send({ "success": true });
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
+        res.send({
+            "success": true
+        });
     })
 
 
@@ -142,9 +186,15 @@ router.get("/querySecondCategoryPaging", function (req, res) {
         size: req.query.pageSize ? parseInt(req.query.pageSize) : 10,
     })
     Category.querySecondCategoryPaging(page, function (err, data) {
-        if (err) return res.send({ "error": 403, "message": "数据库异常！" });
+        if (err) return res.send({
+            "error": 403,
+            "message": "数据库异常！"
+        });
         Category.countSecondCategory(function (err, result) {
-            if (err) return res.send({ "error": 403, "message": "数据库异常！" });
+            if (err) return res.send({
+                "error": 403,
+                "message": "数据库异常！"
+            });
             page.total = result.count;
             page.rows = data;
             console.log(page);

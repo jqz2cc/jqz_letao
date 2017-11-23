@@ -67,8 +67,36 @@
         <li>
           <i>/</i>
         </li>
+        <li>分类管理</li>
+        <li>
+          <i>/</i>
+        </li>
         <li>一级分类</li>
       </ol>
+
+      <!-- 添加分类的按钮 -->
+      <button class="btn btn-default btn_firstAdd mb_20">添加分类</button>
+
+
+      <!-- table的内容区域 -->
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr class="text-center">
+            <td width="20%" style="font-weight:800">序号</td>
+            <td width="80%" style="font-weight:800">分类名称</td>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr class="text-center">
+            <td width="20%">1</td>
+            <td width="80%">运动馆</td>
+          </tr> -->
+        </tbody>
+      </table>
+
+      <div class="text-center">
+        <ul id="paginator"></ul>
+      </div>
     </div>
   </div>
 
@@ -97,6 +125,49 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+
+
+  <!-- 添加分类的模态框 -->
+  <div class="modal fade" id="first_Add_modal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">温馨提示</h4>
+        </div>
+        <div class="modal-body">
+          <form id="form">
+            <div class="form-group">
+              <input type="text" name="categoryName" class="form-control" id="exampleInputEmail1" placeholder="请输入添加的名称">
+            </div>
+
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="submit" form="form" class="btn btn-primary logout_btn">添加</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+
+    <!-- 模板引擎 -->
+    <script type="text/html" id="first_tpl">
+      {{each rows v i}}
+      <tr class="text-center">
+        <td width="20%">{{(page-1)*size+i+1}}</td>
+        <td width="80%">{{v.categoryName}}</td>
+      </tr>
+      {{/each}}
+    </script>
+
+
+
+
 </body>
 
 </html>
@@ -104,5 +175,7 @@
 <script src="./lib/bootstrap/js/bootstrap.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
 <script src="./js/common.js"></script>
-<!-- <script src="./js/index.js"></script> -->
+<script src="./js/first.js"></script>
