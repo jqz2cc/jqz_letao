@@ -161,14 +161,33 @@
         </div>
         <div class="modal-body">
           <form id="form">
+
+            <!-- 下拉框 -->
+            <div class="form-group">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <span class="first_text">请选择二级分类</span>
+                  <span class="caret"></span>
+                </button>
+
+                <!-- 需要获取二级分类的id -->
+                <input type="hidden" name="brandId" class="categoryId">
+
+                <ul class="dropdown-menu">
+
+                  <!-- 下拉列表的数据放置地 -->
+
+                </ul>
+              </div>
+
+            </div>
             <!-- 需要上传 商品名称-->
             <div class="form-group">
               <input type="text" name="proName" autocomplete="off" class="form-control" placeholder="请输入商品名称">
             </div>
             <!-- 商品描述 -->
             <div class="form-group">
-              <input type="hidden" name="proDesc" autocomplete="off" class="form-control" placeholder="请输入商品描述">
-              <textarea name="" id="" rows="2" placeholder="请输入商品描述" style="width:100%;"></textarea>
+              <textarea class="form-control" rows="3" name="proDesc" placeholder="请输入商品的描述"></textarea>
             </div>
             <!-- 请商品库存-->
             <div class="form-group">
@@ -186,21 +205,23 @@
             <div class="form-group">
               <input type="text" name="size" autocomplete="off" class="form-control" placeholder="请输入添加的尺码">
             </div>
+
+
             <!-- 图片文件上传 -->
             <div class="form-group files">
               <div class="second_picBox">
                 <input type="button" class="btn btn-default" class="form-control" value="上传图片">
                 <!-- 后端通过name属性"pic"获取图片    data-url指定的接口地址-->
-                <input type="file" name="pic1" id="fileupload" data-url="/category/addSecondCategoryPic">
-                <input type="hidden" name="hot" value="0">
+                <input type="file" name="pic1" id="fileupload" data-url="/product/addProductPic">
+
               </div>
             </div>
             <!-- 图片显示 -->
             <div class="form-group">
               <div class="img_box">
-                <img src="" width="100" height="100" alt="">
+                <!-- <img src="" width="100" height="100" alt=""> -->
                 <!-- 获取logo -->
-                <input type="hidden" name="">
+                <input type="hidden" name="brandLOGO">
               </div>
             </div>
 
@@ -233,6 +254,16 @@
         </td>
 
       </tr>
+      {{/each}}
+    </script>
+
+
+    <!-- 模板引擎____一级分类名称 -->
+    <script type="text/html" id="second_list_tpl">
+      {{each rows v i}}
+      <li>
+        <a href="#" data-id="{{v.id}}">{{v.brandName}}</a>
+      </li>
       {{/each}}
     </script>
 </body>

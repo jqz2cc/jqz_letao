@@ -1,3 +1,11 @@
+/*
+ * @Author: 贾倾真 
+ * @Date: 2017-11-24 18:15:27 
+ * @Last Modified by: 贾倾真
+ * @Last Modified time: 2017-11-24 19:39:21
+ */
+
+
 *{
   margin: 0;
   padding: 0;
@@ -33,6 +41,7 @@ html,body{
   left: 0;
   top: 0;
   position: fixed;
+  z-index: 999;
   height: 100%;
   background-color: #222D32;
   transition: all 1s;
@@ -122,7 +131,6 @@ html,body{
   &.active{
     padding-left: 0;
   }
-
   // 导航栏
   .nav{
     position: fixed;
@@ -130,7 +138,9 @@ html,body{
     right: 0;
     height: 40px;
     width: 100%;
+    padding-left: 200px;
     background-color: #3C8DBC;
+    transition: all 1s;
     >a{
       font-size: 20px;
       text-align: center;
@@ -145,7 +155,9 @@ html,body{
     }
     
   }
-
+  &.active .nav{
+    padding-left: 10px;
+  }
 
 
   // 内部区域
@@ -223,3 +235,12 @@ html,body{
     }
 }
 } 
+
+// .img_box{
+//   >img{
+//     width: 100px;
+//     height: 100px;
+//   }
+// }
+
+
