@@ -1,0 +1,130 @@
+/*
+ * @Author: 贾倾真 
+ * @Date: 2017-11-24 20:19:00 
+ * @Last Modified by: 贾倾真
+ * @Last Modified time: 2017-11-24 22:00:05
+ */
+
+@charset "utf-8";
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,body{
+  height: 100%;
+}
+
+// 最外层container的样式
+.lt_container{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  max-width: 640px;
+  min-width: 320px;
+  padding-top:45px;
+  padding-bottom: 55px;
+  margin: 0 auto; 
+}
+
+// lt_nav的样式
+.lt_nav{
+  height: 45px;
+  width: 100%;
+  background-color: #FF5900;
+  position: absolute;
+  top: 0;
+  >a{
+    color: #ffffff;
+    position: absolute;
+    top: 0;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    line-height: 45px;
+    text-align: center;
+    &.lt_search{
+      right: 0;
+    }
+    &.lt_home{
+      left: 0;
+    }
+  }
+  >h4{
+    text-align: center;
+    line-height: 45px;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+  }
+ 
+}
+
+// lt_main的样式
+.lt_main{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+// lt_foot的样式
+.lt_foot{
+  height: 55px;
+  width: 100%;
+  background-color: #FF5900;
+  position: absolute;
+  bottom: 0;
+  >ul{
+    width: 100%;
+    height: 100%;
+    >li{
+      float: left;
+      width: 25%;
+     
+      >a{
+        width: 100%;
+        height: 100%;
+        display: block;
+        padding-top: 8px;
+        box-sizing: border-box;
+       
+        text-align: center;
+        color: #ffffff;
+        >p{
+          color: #ffffff;
+        }
+
+      }
+    }
+  }
+}
+
+
+// 商品展示
+.product_list{
+  width: 100%;
+
+  .item{
+    display: block;
+    width: 48%;
+    &:nth-child(odd){
+      margin-right: 4%;
+    }
+    float: left;
+    >img{
+      width: 100%;
+    }
+    >.mui-ellipsis-2{
+      width: 100%;
+    }
+    .price{
+      color: #FF5900;
+    }
+    .oldPrice{
+      text-decoration: line-through;
+    }
+  }
+}
+
+
